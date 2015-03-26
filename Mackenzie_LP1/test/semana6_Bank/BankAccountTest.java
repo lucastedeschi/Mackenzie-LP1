@@ -5,12 +5,8 @@
  */
 package semana6_Bank;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.Assert;
 
 /**
  *
@@ -20,53 +16,45 @@ public class BankAccountTest {
     
     public BankAccountTest() {
     }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
-    public void testSomeMethod() {
+    public void testYeld(){
+        BankAccount a = new BankAccount(100);
+        a.yield(6.5);
+        Assert.assertEquals(106.5, a.getBalance(),0.0);
     }
-
-    /**
-     * Test of deposit method, of class BankAccount.
-     */
     @Test
-    public void testDeposit() {
+    public void testTransfer(){
+        BankAccount a = new BankAccount(1000);
+        BankAccount b = new BankAccount(500);
+        a.transfer(b);
+        Assert.assertEquals(0.0, a.getBalance(),0.0);
+        Assert.assertEquals(1500, b.getBalance(),0.0);
     }
-
-    /**
-     * Test of withDraw method, of class BankAccount.
-     */
     @Test
-    public void testWithDraw() {
+    public void testBankAccount(){
+        BankAccount a = new BankAccount(-100);
+        Assert.assertEquals(0.0, a.getBalance(),0.0); 
+    // Extra 01: se foi digitado um valor negativo, balance se mantém como 0.
     }
-
-    /**
-     * Test of setBalance method, of class BankAccount.
-     */
     @Test
-    public void testSetBalance() {
+    public void testGetBalanceNegative(){
+        BankAccount a = new BankAccount(0);
+        a.withDraw(100);
+        Assert.assertEquals(-1, a.getBalance(),0.0);
+    // Extra 02: se o saldo estive negativo, balance ficará como -1.
     }
-
-    /**
-     * Test of getBalance method, of class BankAccount.
-     */
     @Test
-    public void testGetBalance() {
+    public void testGetBalanceLimit(){
+        BankAccount a = new BankAccount(100);
+        a.limit(500);
+        Assert.assertEquals(100, a.getBalance(),0.0);
+    // Extra 03: se o saldo não ultrapassou o limite, ele será o mesmo. Se tivesse ultrapassado, o saldo seria -1.
     }
-    
+    @Test
+    public void testwithDrawPercent(){
+        BankAccount a = new BankAccount(100);
+        a.withDraw(10);
+        Assert.assertEquals(89.995, a.getBalance(),0.0);
+    // Extra 04: verifica se a taxa de 0,05% sobre o valor sacado foi aplicada.
+    }
 }

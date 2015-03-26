@@ -15,18 +15,35 @@ public class BankAccount {
         balance = 0;
     }
     public BankAccount(double initialBalance){
-        balance = initialBalance;
+        if (initialBalance >= 0){
+            balance = initialBalance;
+        }
     }
     public void deposit(double amount){
         balance+=amount;
     }
     public void withDraw(double amount){
-        balance-=amount;
+        balance-=amount + ((amount/100)*0.05);
+    }
+    public void limit(double limit){
+        if (balance > limit){
+            balance = -1;
+        }
     }
     public void setBalance(double b){
         balance = b;
     }
     public double getBalance(){
-        return balance;
+        if (balance >= 0){
+            return balance;
+        }
+        return -1;
+    }
+    void yield(double d) {
+        balance += (balance/100) * 6.5;
+    }
+    void transfer(BankAccount b) {
+        b.balance += this.balance;
+        this.balance = 0; 
     }
 }
