@@ -5,20 +5,20 @@
  */
 package semana7_Bank;
 
-import semana6_Bank.*;
-
 /**
  *
  * @author Lucas Tedeschi
  */
 public class BankAccountV2 {
     private double balance;
+    private int accountNumber;
     public BankAccountV2(){
         balance = 0;
     }
-    public BankAccountV2(double initialBalance){
+    public BankAccountV2(int accountNumber, double initialBalance){
         if (initialBalance >= 0){
             balance = initialBalance;
+            this.accountNumber = accountNumber;
         }
     }
     public void deposit(double amount){
@@ -35,11 +35,17 @@ public class BankAccountV2 {
     public void setBalance(double b){
         balance = b;
     }
+    public void setAccountNumber(int b){
+        accountNumber = b;
+    }
     public double getBalance(){
         if (balance >= 0){
             return balance;
         }
         return -1;
+    }
+    public int getAccountNumber(){
+        return accountNumber;
     }
     void yield(double d) {
         balance += (balance/100) * 6.5;
