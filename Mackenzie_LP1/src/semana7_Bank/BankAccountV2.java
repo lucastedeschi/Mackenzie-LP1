@@ -11,12 +11,12 @@ import semana6_Bank.*;
  *
  * @author Lucas Tedeschi
  */
-public class BankAccount {
+public class BankAccountV2 {
     private double balance;
-    public BankAccount(){
+    public BankAccountV2(){
         balance = 0;
     }
-    public BankAccount(double initialBalance){
+    public BankAccountV2(double initialBalance){
         if (initialBalance >= 0){
             balance = initialBalance;
         }
@@ -44,7 +44,7 @@ public class BankAccount {
     void yield(double d) {
         balance += (balance/100) * 6.5;
     }
-    void transfer(BankAccount b) {
+    void transfer(BankAccountV2 b) {
         b.balance += this.balance;
         this.balance = 0; 
     }
