@@ -10,48 +10,70 @@ package semana7_Bank;
  * @author Lucas Tedeschi
  */
 public class BankAccountV2 {
-    private double balance;
-    private int accountNumber;
-    public BankAccountV2(){
+    private int accountNumber;  
+    private static int lastAccountNumber = 1000; 
+    private double balance; 
+    private String name; 
+    private char vN[] = new char[3];
+    private int vI[] = new int[4];
+    private String pass[] = new String[7];
+    
+    public BankAccountV2() {
+        accountNumber=lastAccountNumber++;
         balance = 0;
     }
-    public BankAccountV2(int accountNumber, double initialBalance){
-        if (initialBalance >= 0){
-            balance = initialBalance;
-            this.accountNumber = accountNumber;
+
+    public BankAccountV2(double initialBalance, String name) {
+        accountNumber=lastAccountNumber++;
+        balance = initialBalance;
+        this.name = name; 
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withDraw(double amount) {
+        balance -= amount;
+    }
+    
+    public int[] generatePasswordInt(){ 
+        for (int j=0; j<4; j++){
+            vI[j] = (int)(Math.random()*100);
         }
+        return vI;
     }
-    public void deposit(double amount){
-        balance+=amount;
+    
+    public char[] generatePasswordChar(){
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
+        for (int i=0; i<3; i++){
+            int k = (int)(Math.random()*100);
+            vN[i] = letras.charAt(k);
+        }  
+        return vN;
     }
-    public void withDraw(double amount){
-        balance-=amount + ((amount/100)*0.05);
-    }
-    public void limit(double limit){
-        if (balance > limit){
-            balance = -1;
+    
+    public boolean numberName(){
+        for(int i=0;i<name.length();i++){
+            if (name.charAt(i) >= 0 && name.charAt(i) <= 9){
+                return false;
+            }
         }
+        return true;
     }
-    public void setBalance(double b){
-        balance = b;
+    
+    public double getBalance() {
+        return balance;
     }
-    public void setAccountNumber(int b){
-        accountNumber = b;
-    }
-    public double getBalance(){
-        if (balance >= 0){
-            return balance;
-        }
-        return -1;
-    }
+
     public int getAccountNumber(){
         return accountNumber;
     }
-    void yield(double d) {
-        balance += (balance/100) * 6.5;
+    
+    public String getName(){
+        return name;
     }
-    void transfer(BankAccountV2 b) {
-        b.balance += this.balance;
-        this.balance = 0; 
+    public String getPassword(){
+        return "Senha: " + generatePasswordChar() + generatePasswordInt();
     }
 }
