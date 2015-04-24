@@ -54,4 +54,30 @@ public class BankArray {
         }
         return cont;
     }
+    public void sort(){
+        int j,i,min;
+        for(i = 0;i < accounts.size()-1;i++){
+            min = i;
+            for(j = i + 1;j < accounts.size();j++){
+                if(accounts.get(j).getAccountNumber() < accounts.get(i).getAccountNumber()){
+                   min = j;
+                }
+            }
+            BankAccount aux = accounts.get(min);
+            accounts.set(j, accounts.get(i));
+            accounts.set(i, accounts.get(j));            
+        }
+    }
+    public static void main(String args[]){
+        BankArray b = new BankArray();
+        BankAccount cb1 = new BankAccount(01,"senha","Lucas",100);
+        BankAccount cb2 = new BankAccount(02,"senha","Jonatas",200);
+        BankAccount cb3 = new BankAccount(03,"senha","Rubens",300);
+        BankAccount cb4 = new BankAccount(04,"senha","João",400);  
+        b.addAccount(cb1);
+        b.addAccount(cb2);
+        b.addAccount(cb3);
+        b.addAccount(cb4);
+        b.sort();
+    }
 }

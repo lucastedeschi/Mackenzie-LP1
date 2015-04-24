@@ -1,8 +1,8 @@
-﻿/*
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package exemploarquivos;
+package semana8;
 
 import java.io.*;
 
@@ -22,12 +22,14 @@ public class ExemploArquivos {
            // O que acontece se os arqiuvos nao puderam ser abertos ?
            String linha = r.readLine();  // quantidade de dados a serem lidos
            
-           w.write(linha+'\n');   // grava quantidade no arquivo de saída
+           w.write(linha);   // grava quantidade no arquivo de saída
+		   w.newLine();
            int q = Integer.parseInt(linha);
                    
            for(int i=0;i<q;i++){
               linha = r.readLine();
-              w.write(linha.toUpperCase()+'\n');
+              w.write(linha.toUpperCase());
+			  w.newLine();
            }
            r.close();   // fecha arquivo de entrada
            w.flush();  // força escrita final de dados no arquivo de saída
