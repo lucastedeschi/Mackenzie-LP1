@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package semana8;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 /**
  *
@@ -13,7 +16,36 @@ public class BankArray {
     private ArrayList<BankAccount> accounts;
     
     public BankArray(){
-        accounts = new ArrayList<BankAccount>(100);
+        accounts = new ArrayList<BankAccount>();
+    }
+    public BankArray(String filename){
+        accounts = new ArrayList<BankAccount>();
+        try{
+            BufferedReader r = new BufferedReader(new FileReader(filename));
+            String s = r.readLine();
+            int q = Integer.parseInt(s);
+            ArrayList<String> aux = new ArrayList();
+            for(int i = 0;i<q;i++){
+                s = r.readLine();
+                aux.add(s);
+            }
+            int indA = 0, indB = 3, indO = 2, indP = 1;
+            BankAccount a = null;
+            int quantObj = q/4;
+            for(int j = 0;j<quantObj;j++){
+                double tempB = Double.parseDouble(aux.get(indB));
+                int tempA = Integer.parseInt(aux.get(indA));
+                a = new BankAccount(tempA,aux.get(indP),aux.get(indO),tempB);
+                this.addAccount(a);
+                indA = indA + 4;
+                indB = indB + 4;
+                indO = indO + 4;
+                indP = indP + 4;
+            }  
+        }
+        catch(IOException | NumberFormatException e){
+            System.exit(-1);
+        }
     }
     public void addAccount(BankAccount a){
         accounts.add(a);
@@ -64,8 +96,8 @@ public class BankArray {
                 }
             }
             BankAccount aux = accounts.get(min);
-            accounts.set(j, accounts.get(i));
-            accounts.set(i, accounts.get(j));            
+            accounts.set(min, accounts.get(i));
+            accounts.set(i, aux);            
         }
     }
     public static void main(String args[]){
@@ -79,5 +111,7 @@ public class BankArray {
         b.addAccount(cb3);
         b.addAccount(cb4);
         b.sort();
+        BankArray a = new BankArray("entrada.txt");
+        System.out.println(a);
     }
 }
