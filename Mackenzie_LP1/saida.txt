@@ -1,0 +1,8 @@
+Account number: 1 - Account owner: Lucas - Account password: senha1 - Account balance: 1000.0 
+ 
+Account number: 2 - Account owner: Chung - Account password: senha2 - Account balance: 2000.0 
+ 
+Account number: 3 - Account owner: Jonatas - Account password: senha3 - Account balance: 3000.0 
+ 
+Account number: 4 - Account owner: Marco - Account password: senha4 - Account balance: 4000.0 
+ 
