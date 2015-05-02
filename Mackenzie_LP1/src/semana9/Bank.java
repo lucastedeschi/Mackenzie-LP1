@@ -16,33 +16,43 @@ public class Bank{
     public Bank(){
         accounts = new ArrayList<BankAccount>();  
     }
-    public Bank(String filename){
-        accounts = new ArrayList<BankAccount>();
-        try{
-            BufferedReader r = new BufferedReader(new FileReader(filename));
-            String s = r.readLine();
-            int q = Integer.parseInt(s);
-            ArrayList<String> aux = new ArrayList();
-            for(int i = 0;i<q;i++){
-                s = r.readLine();
-                aux.add(s);
+    public Bank(String entrada) {
+        try {
+            accounts = new ArrayList<BankAccount>();
+            BufferedReader r = new BufferedReader(new FileReader(entrada));
+            if (r != null) {   
+                int q = (new Integer(r.readLine())).intValue();
+                System.out.println(q);
+                for (int i = 0; i < q; i++) {
+                    setBank(r.readLine());
+                }
+                r.close(); 
             }
-            int indA = 0, indB = 3, indO = 2, indP = 1, indR = 4;
-            BankAccount a = null;
-            int quantObj = q/4;
-            for(int j = 0;j<quantObj;j++){
-                double tempB = Double.parseDouble(aux.get(indB));
-                int tempA = Integer.parseInt(aux.get(indA));
-                a = new BankAccount(tempA,aux.get(indP),aux.get(indO),tempB);
-                this.addBankAccount(a);
-                indA = indA + 4;
-                indB = indB + 4;
-                indO = indO + 4;
-                indP = indP + 4;
-            }  
-        }
-        catch(IOException | NumberFormatException e){
+        } catch (Exception e) {
             System.exit(-1);
+        }
+    }
+
+    public void setBank(String conta) {
+        String[] aux = conta.split("#");
+        if (aux.length != 4) {
+            int p0 = Integer.parseInt(aux[0]);
+            String p1 = aux[1];
+            String p2 = aux[2];
+            double p3 = Double.parseDouble(aux[3]);
+            double p4 = Double.parseDouble(aux[4]);
+            BankAccount res = new SavingsAccount(p0, p1, p2, p3, p4);
+            System.out.println(res);
+            accounts.add(res);
+        } else {
+            int p0 = Integer.parseInt(aux[0]);
+            String p1 = aux[1];
+            String p2 = aux[2];
+            double p3 = Double.parseDouble(aux[3]);
+
+            BankAccount res = new BankAccount(p0, p1, p2, p3);
+            System.out.println(res);
+            accounts.add(res);           
         }
     }
     public void dump(){
@@ -108,7 +118,7 @@ public class Bank{
         for(i = 0;i < accounts.size()-1;i++){
             min = i;
             for(j = i + 1;j < accounts.size();j++){
-                if(accounts.get(j).getAccountNumber() < accounts.get(i).getAccountNumber()){
+                if(accounts.get(j).getBalance() < accounts.get(i).getBalance()){
                    min = j;
                 }
             }
