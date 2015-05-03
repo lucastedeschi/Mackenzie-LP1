@@ -113,19 +113,39 @@ public class Bank{
         }
         return cont;
     }
-    public void sort(){
-        int j,i,min;
-        for(i = 0;i < accounts.size()-1;i++){
+    public ArrayList sort(){
+        ArrayList<BankAccount> ord = accounts;
+        int min;
+        for(int i =0;i < ord.size()-1;i++){
             min = i;
-            for(j = i + 1;j < accounts.size();j++){
-                if(accounts.get(j).getBalance() < accounts.get(i).getBalance()){
-                   min = j;
+            for(int j = i+1; j < ord.size();j++){
+                if(ord.get(j).getBalance() < ord.get(min).getBalance()){
+                    min = j;
                 }
             }
-            BankAccount aux = accounts.get(min);
-            accounts.set(min, accounts.get(i));
-            accounts.set(i, aux);            
+            BankAccount aux = ord.get(min);
+            ord.set(min, ord.get(i));
+            ord.set(i, aux);
         }
+         return ord;
+    }
+    public ArrayList<BankAccount> bankAccounts(){
+        ArrayList<BankAccount> bank = new ArrayList();
+        for(BankAccount b: accounts){
+            if(!(b instanceof SavingsAccount)){
+                bank.add(b);
+            }
+        }
+        return bank;
+    }
+    public ArrayList<SavingsAccount> savingsAccounts(){
+      ArrayList<SavingsAccount> bank = new ArrayList();
+      for(BankAccount b: accounts){
+         if(b instanceof SavingsAccount){
+                bank.add((SavingsAccount) b);
+            }
+        }
+        return bank;
     }
     @Override
     public String toString(){
