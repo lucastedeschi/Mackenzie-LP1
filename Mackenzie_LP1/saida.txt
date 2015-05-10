@@ -1,8 +1,14 @@
-Account number: 1 - Account owner: Lucas - Account password: senha1 - Account balance: 1000.0 
+Tipo de conta: CLA - Account number: 1 - Account owner: Lucas - Account password: senha1 - Account balance: 1000.0 - Razão: Razão - Data de Criação: 10/05/2013 - Data de Apuração: 10/05/2015 - Cidade: São Paulo
  
-Account number: 2 - Account owner: Chung - Account password: senha2 - Account balance: 2000.0 
+Tipo de conta: RA - Account number: 2 - Account owner: Chung - Account password: senha2 - Account balance: 2050.0 - Taxas Administrativas: 50.0
  
-Account number: 3 - Account owner: Jonatas - Account password: senha3 - Account balance: 3000.0 
+Tipo de conta: RA - Account number: 7 - Account owner: Gledson - Account password: senha2 - Account balance: 2050.0 - Taxas Administrativas: 50.0
  
-Account number: 4 - Account owner: Marco - Account password: senha4 - Account balance: 4000.0 
+Tipo de conta: SLA - Account number: 3 - Account owner: Jonatas - Account password: senha3 - Account balance: 3000.0 - Razão: Razão - Data de Criação: 10/05/2013 - Data de Apuração: 10/05/2015 - Estado: SP
+ 
+Tipo de conta: FLA - Account number: 5 - Account owner: Leonardo - Account password: senha3 - Account balance: 3000.0 - Razão: Razão - Data de Criação: 10/05/2013 - Data de Apuração: 10/05/2015 - Número: 55
+ 
+Tipo de conta: SA - Account number: 4 - Account owner: Marco - Account password: senha4 - Account balance: 4200.0 - Juros: 200.0
+ 
+Tipo de conta: SLA - Account number: 6 - Account owner: Jaqueline - Account password: senha3 - Account balance: 5000.0 - Razão: Razão - Data de Criação: 10/05/2013 - Data de Apuração: 10/05/2015 - Estado: RJ
  

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package semana9;
+package semana10;
 
 import semana8.*;
 
@@ -11,14 +11,16 @@ import semana8.*;
  *
  * @author 41406133
  */
-public class BankAccount {
-    private int accountNumber;
-    private String password;
-    private String owner;
-    private double balance;
+public abstract class BankAccount {
+    protected int accountNumber;
+    protected String password;
+    protected String owner;
+    protected double balance;
+    protected String TP;
     
-    public BankAccount(int accountNumber, String password, String owner, double balance){
+    public BankAccount(String TP, int accountNumber, String password, String owner, double balance){
         this.accountNumber = accountNumber;
+        this.TP = TP;
         if(password==null){
             password = "123";
         }   else{
@@ -37,12 +39,8 @@ public class BankAccount {
     public void withDraw(double amount) {
         balance -= amount;
     }
-    public double getBalance(){
-        if (balance >= 0){
-            return balance;
-        }
-        return -1;
-    }
+    public abstract double getBalance();
+    
     public int getAccountNumber(){
         return accountNumber;
     }
@@ -52,8 +50,5 @@ public class BankAccount {
     public String getOwner(){
         return owner;
     }
-    @Override
-    public String toString(){
-       return "Account number: " + accountNumber + " - Account owner: " + owner + " - Account password: " + password + " - Account balance: " + balance + "\n";
-    }
+    public abstract String toString();
 }
