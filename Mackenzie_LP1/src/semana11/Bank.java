@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package semana10;
-import semana11.*;
+package semana11;
 import java.io.*;
 import java.util.ArrayList;
 /**
  *
  * @author 41406133
  */
-public class Bank{
+public class Bank implements BankAccountOperation{                                                                                                                          
     private ArrayList<BankAccount> accounts;
+    protected int bankId;
+    protected String bankname;
     
     public Bank(){
         accounts = new ArrayList<BankAccount>();  
+    }
+    public Bank(int bankId, String bankName){
+        this.bankId = bankId;
+        this.bankname = bankname;
+        accounts = new ArrayList<BankAccount>(); 
     }
     public Bank(String entrada) {
         try {
@@ -32,6 +38,25 @@ public class Bank{
         } catch (Exception e) {
             System.exit(-1);
         }
+    }
+    @Override
+    public double getBalance(int bankId, String bankName, int accountNumber){
+        for(BankAccount a : accounts){
+            if(a.getAccountNumber() == accountNumber){
+                return a.getBalance();
+            }
+        }
+        return 0;
+    }
+    @Override
+    public void deposit(int bankId, String bankName, int accountNumber, double value){
+        BankAccount b = find(accountNumber);
+        b.balance = b.getBalance() + value;
+    }
+    @Override
+    public void withDraw(int bankId, String bankName, int accountNumber, double value){
+        BankAccount b = find(accountNumber);
+        b.balance = b.getBalance() - value;
     }
     public void setBank(String conta) {
         String[] aux = conta.split("#");

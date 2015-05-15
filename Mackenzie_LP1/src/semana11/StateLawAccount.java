@@ -3,21 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package semana10;
-
-import semana11.*;
-import java.util.Date;
+package semana11;
 
 /**
  *
  * @author 41406133
  */
-public class FederationLawAccount extends LawAccount{
-    public int instance;
+public class StateLawAccount extends LawAccount {
+    public String state;
     
-    public FederationLawAccount(String TP, int accountNumber, String password, String owner, double balance, String reason, String dateCreation, String dateClearance, int instance){
+    public StateLawAccount(String TP, int accountNumber, String password, String owner, double balance, String reason, String dateCreation, String dateClearance, String state){
         super(TP, accountNumber, password, owner, balance, reason, dateCreation, dateClearance);
-        this.instance = instance;
+        this.state = state;
     } 
     @Override
     public double getBalance(){
@@ -25,6 +22,6 @@ public class FederationLawAccount extends LawAccount{
     }
     @Override
     public String toString(){
-       return super.toString() + (" - Número: " + this.instance + "\n");
+       return super.toString() + (" - Estado: " + state + "\n");
     }
-}
+}  

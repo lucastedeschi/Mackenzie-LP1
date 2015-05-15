@@ -5,6 +5,8 @@
  */
 package semana10;
 
+import semana11.*;
+
 /**
  *
  * @author 41406133
